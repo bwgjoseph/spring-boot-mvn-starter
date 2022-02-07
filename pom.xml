@@ -24,6 +24,7 @@
     <spotbugs-maven-plugin.version>4.5.2.0</spotbugs-maven-plugin.version>
     <spotbugs.version>4.5.3</spotbugs.version>
     <findsecbugs-plugin.version>1.11.0</findsecbugs-plugin.version>
+    <modernizer-maven-plugin.version>2.3.0</modernizer-maven-plugin.version>
   </properties>
 
   <dependencies>
@@ -201,6 +202,23 @@
               <version>${findsecbugs-plugin.version}</version>
             </plugin>
           </plugins>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.gaul</groupId>
+        <artifactId>modernizer-maven-plugin</artifactId>
+        <version>${modernizer-maven-plugin.version}</version>
+        <executions>
+          <execution>
+            <id>modernizer</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>modernizer</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <javaVersion>${java.version}</javaVersion>
         </configuration>
       </plugin>
     </plugins>
