@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF8"?>
+<toolchains>
+  <toolchain>
+    <type>jdk</type>
+    <provides>
+      <version>17</version>
+    </provides>
+    <configuration>
+      <jdkHome>C:\Java\jdk-17.0.1+12</jdkHome>
+    </configuration>
+  </toolchain>
+</toolchains>
