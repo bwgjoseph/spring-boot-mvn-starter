@@ -25,6 +25,8 @@
     <spotbugs.version>4.5.3</spotbugs.version>
     <findsecbugs-plugin.version>1.11.0</findsecbugs-plugin.version>
     <modernizer-maven-plugin.version>2.3.0</modernizer-maven-plugin.version>
+    <!-- Plugin Management -->
+    <maven-pmd-plugin.version>3.15.0</maven-pmd-plugin.version>
   </properties>
 
   <dependencies>
@@ -221,7 +223,45 @@
           <javaVersion>${java.version}</javaVersion>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+        <version>${maven-pmd-plugin.version}</version>
+        <configuration>
+          <printFailingErrors>true</printFailingErrors>
+          <!-- enable incremental analysis -->
+          <!-- https://pmd.github.io/latest/pmd_userdocs_tools_maven.html#enabling-incremental-analysis -->
+          <analysisCache>true</analysisCache>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
+
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-pmd-plugin</artifactId>
+          <version>${maven-pmd-plugin.version}</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
   </build>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+        <version>${maven-pmd-plugin.version}</version>
+      </plugin>
+    </plugins>
+  </reporting>
 
 </project>
