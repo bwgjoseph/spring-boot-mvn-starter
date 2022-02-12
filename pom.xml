@@ -27,6 +27,7 @@
     <spotless-maven-plugin.version>2.20.2</spotless-maven-plugin.version>
     <google-java-format.version>1.13.0</google-java-format.version>
     <versions-maven-plugin.version>2.9.0</versions-maven-plugin.version>
+    <git-commit-id-maven-plugin.version>5.0.0</git-commit-id-maven-plugin.version>
     <!-- Plugin Management -->
     <maven-pmd-plugin.version>3.15.0</maven-pmd-plugin.version>
   </properties>
@@ -267,6 +268,30 @@
           <rulesUri>file:///${project.basedir}/config/versions-maven-plugin/rules.xml</rulesUri>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>io.github.git-commit-id</groupId>
+        <artifactId>git-commit-id-maven-plugin</artifactId>
+        <version>${git-commit-id-maven-plugin.version}</version>
+        <executions>
+            <execution>
+                <id>get-the-git-infos</id>
+                <goals>
+                    <goal>revision</goal>
+                </goals>
+                <phase>initialize</phase>
+            </execution>
+        </executions>
+        <configuration>
+            <generateGitPropertiesFile>true</generateGitPropertiesFile>
+            <generateGitPropertiesFilename>${project.build.outputDirectory}/git.properties</generateGitPropertiesFilename>
+            <includeOnlyProperties>
+                <includeOnlyProperty>^git.build.(time|version)$</includeOnlyProperty>
+                <includeOnlyProperty>^git.commit.id.(abbrev|full)$</includeOnlyProperty>
+                <includeOnlyProperty>^git.commit.user.(email|name)$</includeOnlyProperty>
+            </includeOnlyProperties>
+            <commitIdGenerationMode>full</commitIdGenerationMode>
+        </configuration>
+    </plugin>
     </plugins>
 
     <pluginManagement>
