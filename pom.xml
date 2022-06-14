@@ -26,8 +26,11 @@
     <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
     <spotless-maven-plugin.version>2.22.8</spotless-maven-plugin.version>
     <google-java-format.version>1.15.0</google-java-format.version>
+    <palantir-java-format.version>2.24.0</palantir-java-format.version>
     <versions-maven-plugin.version>2.11.0</versions-maven-plugin.version>
     <git-commit-id-maven-plugin.version>5.0.0</git-commit-id-maven-plugin.version>
+    <maven-site-plugin.version>3.12.0</maven-site-plugin.version>
+    <maven-project-info-reports-plugin.version>3.3.0</maven-project-info-reports-plugin.version>
     <!-- Plugin Management -->
     <maven-pmd-plugin.version>3.17.0</maven-pmd-plugin.version>
   </properties>
@@ -123,22 +126,21 @@
             <goals>
               <goal>enforce</goal>
             </goals>
-            <configuration>
-              <rules>
-                <!-- Somehow, this does not take effect -->
-                <requireJavaVersion>
-                  <version>17</version>
-                </requireJavaVersion>
-              </rules>
-              <rules>
-                <requireMavenVersion>
-                  <!-- >= v3.8 -->
-                  <version>[3.8,)</version>
-                </requireMavenVersion>
-              </rules>
-            </configuration>
           </execution>
         </executions>
+        <configuration>
+          <rules>
+            <requireJavaVersion>
+              <version>17</version>
+            </requireJavaVersion>
+          </rules>
+          <rules>
+            <requireMavenVersion>
+              <!-- >= v3.8 -->
+              <version>[3.8,)</version>
+            </requireMavenVersion>
+          </rules>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>com.github.spotbugs</groupId>
@@ -190,6 +192,7 @@
           <!-- enable incremental analysis -->
           <!-- https://pmd.github.io/latest/pmd_userdocs_tools_maven.html#enabling-incremental-analysis -->
           <analysisCache>true</analysisCache>
+          <linkXRef>false</linkXRef>
         </configuration>
         <executions>
           <execution>
@@ -230,12 +233,15 @@
           <ratchetFrom>origin/main</ratchetFrom>
           <!-- define a language-specific format -->
           <java>
+            <palantirJavaFormat>
+              <version>${palantir-java-format.version}</version>
+            </palantirJavaFormat>
             <!-- apply a specific flavor of google-java-format and reflow long strings -->
-            <googleJavaFormat>
+            <!-- <googleJavaFormat>
               <version>${google-java-format.version}</version>
               <style>GOOGLE</style>
               <reflowLongStrings>true</reflowLongStrings>
-            </googleJavaFormat>
+            </googleJavaFormat> -->
             <!-- https://github.com/diffplug/spotless/issues/420 -->
             <indent>
               <tabs>true</tabs>
@@ -292,7 +298,33 @@
             </includeOnlyProperties>
             <commitIdGenerationMode>full</commitIdGenerationMode>
         </configuration>
-    </plugin>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <version>3.12.0</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+        <version>3.3.0</version>
+      </plugin>
+      <!-- <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>3.1.2</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>sources</goal>
+              <goal>resolve</goal>
+            </goals>
+            <configuration>
+              <classifier>javadoc</classifier>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin> -->
     </plugins>
 
     <pluginManagement>
