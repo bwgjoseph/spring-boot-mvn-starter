@@ -39,3 +39,11 @@ The following command will update `pom.xml`
 
 - `./mvnw versions:update-properties`
 - `./mvnw versions:update-parent`
+
+## Extensions
+
+### Maven Profiler
+
+- Run with `-Dprofile` command
+  - `./mvnw verify -Dprofile`
+- See [maven-survival-guide](https://github.com/rfichtner/maven-survival-guide) [maven-profiler](https://github.com/jcgay/maven-profiler)
