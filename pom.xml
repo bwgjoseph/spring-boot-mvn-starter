@@ -236,21 +236,6 @@
             <palantirJavaFormat>
               <version>${palantir-java-format.version}</version>
             </palantirJavaFormat>
-            <!-- apply a specific flavor of google-java-format and reflow long strings -->
-            <!-- <googleJavaFormat>
-              <version>${google-java-format.version}</version>
-              <style>GOOGLE</style>
-              <reflowLongStrings>true</reflowLongStrings>
-            </googleJavaFormat> -->
-            <!-- https://github.com/diffplug/spotless/issues/420 -->
-            <indent>
-              <tabs>true</tabs>
-              <spacesPerTab>2</spacesPerTab>
-            </indent>
-            <indent>
-              <spaces>true</spaces>
-              <spacesPerTab>4</spacesPerTab>
-            </indent>
             <removeUnusedImports />
           </java>
           <!-- https://github.com/diffplug/spotless/tree/main/plugin-maven#incremental-up-to-date-checking-and-formatting -->

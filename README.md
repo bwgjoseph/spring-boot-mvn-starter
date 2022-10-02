@@ -4,24 +4,21 @@
 
 validate > compile > test > package > verify > install > deploy
 
-## Checkstyle
+## Config
 
-We use `google-java-format` style for our codebase
+### VSCode
 
-`google-java-format` is integrated with
+Launch Settings > Java > Maven:Download Sources > Tick
 
-- [intellij](https://plugins.jetbrains.com/plugin/8527-google-java-format/)
-- [intellij-code-style](https://raw.githubusercontent.com/google/styleguide/gh-pages/intellij-java-google-style.xml)
-- [eclipse](https://github.com/google/google-java-format/releases)
-- [vscode](https://marketplace.visualstudio.com/items?itemName=shengchen.vscode-checkstyle)
+### EditorConfig
 
-By using plugin direct would cause conflict in the rules between the one configured in `spotless-maven` and the one from `google_checks.xml`, in particular, the indendention level
+See [.editorconfig](.editorconfig)
 
 ## Plugins
 
 ### Spotless
 
-[spotless](https://github.com/diffplug/spotless) is used for code formatting
+[spotless](https://github.com/diffplug/spotless) is used for code style and formatting
 
 #### Usage
 
