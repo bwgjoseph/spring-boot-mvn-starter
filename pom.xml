@@ -43,6 +43,7 @@
         <spotbugs.version>4.7.0</spotbugs.version>
         <findsecbugs-plugin.version>1.12.0</findsecbugs-plugin.version>
         <maven-pmd-plugin.version>3.17.0</maven-pmd-plugin.version>
+        <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
         <!-- Reports -->
         <maven-site-plugin.version>3.12.0</maven-site-plugin.version>
         <maven-project-info-reports-plugin.version>3.3.0</maven-project-info-reports-plugin.version>
@@ -225,6 +226,28 @@
                   <execution>
                     <goals>
                       <goal>check</goal>
+                    </goals>
+                  </execution>
+                </executions>
+              </plugin>
+              <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco-maven-plugin.version}</version>
+                <executions>
+                  <execution>
+                    <!-- prepares the JaCoCo runtime agent to record the execution data -->
+                    <id>prepare-agent</id>
+                    <goals>
+                      <goal>prepare-agent</goal>
+                    </goals>
+                  </execution>
+                  <execution>
+                    <!-- creates code coverage reports from the execution data recorded by the JaCoCo runtime agent -->
+                    <id>report</id>
+                    <phase>test</phase>
+                    <goals>
+                      <goal>report</goal>
                     </goals>
                   </execution>
                 </executions>
