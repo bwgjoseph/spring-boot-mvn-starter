@@ -79,6 +79,15 @@
           </excludes>
         </configuration>
       </plugin>
+      <!-- Inherited from parent pom.xml -->
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>io.github.git-commit-id</groupId>
+        <artifactId>git-commit-id-maven-plugin</artifactId>
+      </plugin>
     </plugins>
 
   </build>
