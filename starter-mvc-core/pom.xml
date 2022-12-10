@@ -27,7 +27,6 @@
     <findsecbugs-plugin.version>1.12.0</findsecbugs-plugin.version>
     <modernizer-maven-plugin.version>2.4.0</modernizer-maven-plugin.version>
     <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
-    <versions-maven-plugin.version>2.11.0</versions-maven-plugin.version>
     <git-commit-id-maven-plugin.version>5.0.0</git-commit-id-maven-plugin.version>
     <!-- Plugin Management -->
     <maven-pmd-plugin.version>3.17.0</maven-pmd-plugin.version>
@@ -174,14 +173,6 @@
             </goals>
           </execution>
         </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>versions-maven-plugin</artifactId>
-        <version>${versions-maven-plugin.version}</version>
-        <configuration>
-          <rulesUri>file:///${project.basedir}/config/versions-maven-plugin/rules.xml</rulesUri>
-        </configuration>
       </plugin>
       <plugin>
         <groupId>io.github.git-commit-id</groupId>
