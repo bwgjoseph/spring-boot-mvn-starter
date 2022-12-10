@@ -1,39 +1,35 @@
 package com.bwgjoseph.springbootmvnstarter;
 
+import com.bwgjoseph.model.Profile;
 import java.util.List;
-import lombok.Builder;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+@Slf4j
 @SpringBootApplication
 public class SpringBootMvnStarterApplication {
 
     public static void main(String[] args) {
+        testMyFormatter();
         SpringApplication.run(SpringBootMvnStarterApplication.class, args);
     }
 
-    public void testMyFormatter() {
+    public static void testMyFormatter() {
         Profile profile = Profile.builder()
                 .id("1")
                 .name("Joseph")
                 .gender("Male")
-                .address("21 North Way Drive, 01-109")
+                .address("21 North Way Drive, 01-1092")
                 .build();
+
+        log.info("{}", profile);
 
         List<Profile> profiles = List.of(profile);
 
         profiles.stream()
-                .filter(p -> p.address.contains("abcdefg helaks ifa"))
+                .filter(p -> p.getAddress().contains("abcdefg helaks ifa"))
                 .findFirst()
-                .map(p -> p.toString().trim())
-                .get();
+                .ifPresent(value -> value.toString().trim());
     }
-}
-
-@Builder
-class Profile {
-    String id;
-    String name;
-    String gender;
-    String address;
 }

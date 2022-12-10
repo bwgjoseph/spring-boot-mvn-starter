@@ -24,6 +24,7 @@
 
     <modules>
         <module>starter-mvc-core</module>
+        <module>starter-mvc-model</module>
     </modules>
 
     <properties>
