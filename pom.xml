@@ -1,16 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.bwgjoseph</groupId>
-  <artifactId>spring-boot-mvn-starter</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>spring-boot-mvn-starter</name>
-  <packaging>pom</packaging>
-  <description>Spring Boot Maven Starter Project</description>
+    <!--
+        The reason why spring-boot-starter-parent is at root pom.xml is because
+        it is expected all sub-modules to be of the same spring-boot version
+        and that the sub-modules should point to the root.xml
+    -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.7.4</version>
+        <relativePath /> <!-- lookup parent from repository -->
+    </parent>
 
-  <modules>
-    <module>starter-mvc-core</module>
-</modules>
+    <groupId>com.bwgjoseph</groupId>
+    <artifactId>spring-boot-mvn-starter-parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>spring-boot-mvn-starter-parent</name>
+    <!-- To indicate not a actual module -->
+    <packaging>pom</packaging>
+    <description>Spring Boot Maven Starter Project</description>
+
+    <modules>
+        <module>starter-mvc-core</module>
+    </modules>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <spotless-maven-plugin.version>2.22.8</spotless-maven-plugin.version>
+        <palantir-java-format.version>2.24.0</palantir-java-format.version>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.diffplug.spotless</groupId>
+                <artifactId>spotless-maven-plugin</artifactId>
+                <version>${spotless-maven-plugin.version}</version>
+                <configuration>
+                    <!-- limit format enforcement to just the files changed by this feature branch -->
+                    <ratchetFrom>origin/main</ratchetFrom>
+                    <!-- define a language-specific format -->
+                    <java>
+                        <palantirJavaFormat>
+                            <version>${palantir-java-format.version}</version>
+                        </palantirJavaFormat>
+                        <removeUnusedImports />
+                    </java>
+                    <!-- https://github.com/diffplug/spotless/tree/main/plugin-maven#incremental-up-to-date-checking-and-formatting -->
+                    <upToDateChecking>
+                        <enabled>true</enabled>
+                        <indexFile>${project.basedir}/.spotless-index</indexFile>
+                    </upToDateChecking>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
