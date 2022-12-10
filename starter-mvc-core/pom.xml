@@ -24,7 +24,6 @@
     <!-- Plugins -->
     <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
     <!-- Plugin Management -->
-    <maven-pmd-plugin.version>3.17.0</maven-pmd-plugin.version>
   </properties>
 
   <dependencies>
@@ -88,25 +87,6 @@
         </configuration>
       </plugin>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-pmd-plugin</artifactId>
-        <version>${maven-pmd-plugin.version}</version>
-        <configuration>
-          <printFailingErrors>true</printFailingErrors>
-          <!-- enable incremental analysis -->
-          <!-- https://pmd.github.io/latest/pmd_userdocs_tools_maven.html#enabling-incremental-analysis -->
-          <analysisCache>true</analysisCache>
-          <linkXRef>false</linkXRef>
-        </configuration>
-        <executions>
-          <execution>
-            <goals>
-              <goal>check</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
         <version>${jacoco-maven-plugin.version}</version>
@@ -130,25 +110,6 @@
       </plugin>
     </plugins>
 
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-pmd-plugin</artifactId>
-          <version>${maven-pmd-plugin.version}</version>
-        </plugin>
-      </plugins>
-    </pluginManagement>
   </build>
-
-  <reporting>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-pmd-plugin</artifactId>
-        <version>${maven-pmd-plugin.version}</version>
-      </plugin>
-    </plugins>
-  </reporting>
 
 </project>
