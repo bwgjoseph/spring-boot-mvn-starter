@@ -22,9 +22,6 @@
   <properties>
     <java.version>17</java.version>
     <!-- Plugins -->
-    <spotbugs-maven-plugin.version>4.7.0.0</spotbugs-maven-plugin.version>
-    <spotbugs.version>4.7.0</spotbugs.version>
-    <findsecbugs-plugin.version>1.12.0</findsecbugs-plugin.version>
     <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
     <!-- Plugin Management -->
     <maven-pmd-plugin.version>3.17.0</maven-pmd-plugin.version>
@@ -88,30 +85,6 @@
               <artifactId>lombok</artifactId>
             </exclude>
           </excludes>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>com.github.spotbugs</groupId>
-        <artifactId>spotbugs-maven-plugin</artifactId>
-        <version>${spotbugs-maven-plugin.version}</version>
-        <dependencies>
-          <!-- overwrite dependency on spotbugs if you want to specify the version of spotbugs -->
-          <dependency>
-            <groupId>com.github.spotbugs</groupId>
-            <artifactId>spotbugs</artifactId>
-            <version>${spotbugs.version}</version>
-          </dependency>
-        </dependencies>
-        <configuration>
-          <includeFilterFile>${project.basedir}/config/spotbug/spotbugs-security-include.xml</includeFilterFile>
-          <excludeFilterFile>${project.basedir}/config/spotbug/spotbugs-security-exclude.xml</excludeFilterFile>
-          <plugins>
-            <plugin>
-              <groupId>com.h3xstream.findsecbugs</groupId>
-              <artifactId>findsecbugs-plugin</artifactId>
-              <version>${findsecbugs-plugin.version}</version>
-            </plugin>
-          </plugins>
         </configuration>
       </plugin>
       <plugin>
