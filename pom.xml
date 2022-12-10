@@ -28,9 +28,10 @@
 
     <properties>
         <!-- Maven -->
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>17</java.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- Plugins -->
         <spotless-maven-plugin.version>2.22.8</spotless-maven-plugin.version>
         <palantir-java-format.version>2.24.0</palantir-java-format.version>
