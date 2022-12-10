@@ -36,6 +36,9 @@
         <palantir-java-format.version>2.24.0</palantir-java-format.version>
         <maven-toolchains-plugin.version>3.0.0</maven-toolchains-plugin.version>
         <maven-enforcer-plugin.version>3.1.0</maven-enforcer-plugin.version>
+        <!-- Reports -->
+        <maven-site-plugin.version>3.12.0</maven-site-plugin.version>
+        <maven-project-info-reports-plugin.version>3.3.0</maven-project-info-reports-plugin.version>
     </properties>
 
     <build>
@@ -116,6 +119,16 @@
                     </requireMavenVersion>
                   </rules>
                 </configuration>
+              </plugin>
+              <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>${maven-site-plugin.version}</version>
+              </plugin>
+              <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>${maven-project-info-reports-plugin.version}</version>
               </plugin>
         </plugins>
     </build>
