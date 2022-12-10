@@ -37,6 +37,7 @@
         <maven-toolchains-plugin.version>3.0.0</maven-toolchains-plugin.version>
         <maven-enforcer-plugin.version>3.1.0</maven-enforcer-plugin.version>
         <versions-maven-plugin.version>2.11.0</versions-maven-plugin.version>
+        <git-commit-id-maven-plugin.version>5.0.0</git-commit-id-maven-plugin.version>
         <!-- Reports -->
         <maven-site-plugin.version>3.12.0</maven-site-plugin.version>
         <maven-project-info-reports-plugin.version>3.3.0</maven-project-info-reports-plugin.version>
@@ -137,6 +138,30 @@
                 <version>${versions-maven-plugin.version}</version>
                 <configuration>
                   <rulesUri>file:///${session.executionRootDirectory}/config/versions-maven-plugin/rules.xml</rulesUri>
+                </configuration>
+              </plugin>
+              <plugin>
+                <groupId>io.github.git-commit-id</groupId>
+                <artifactId>git-commit-id-maven-plugin</artifactId>
+                <version>${git-commit-id-maven-plugin.version}</version>
+                <executions>
+                  <execution>
+                    <id>get-the-git-infos</id>
+                    <goals>
+                      <goal>revision</goal>
+                    </goals>
+                    <phase>initialize</phase>
+                  </execution>
+                </executions>
+                <configuration>
+                  <generateGitPropertiesFile>true</generateGitPropertiesFile>
+                  <generateGitPropertiesFilename>${project.build.outputDirectory}/git.properties</generateGitPropertiesFilename>
+                  <includeOnlyProperties>
+                    <includeOnlyProperty>^git.build.(time|version)$</includeOnlyProperty>
+                    <includeOnlyProperty>^git.commit.id.(abbrev|full)$</includeOnlyProperty>
+                    <includeOnlyProperty>^git.commit.user.(email|name)$</includeOnlyProperty>
+                  </includeOnlyProperties>
+                  <commitIdGenerationMode>full</commitIdGenerationMode>
                 </configuration>
               </plugin>
         </plugins>
