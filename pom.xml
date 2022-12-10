@@ -27,11 +27,14 @@
     </modules>
 
     <properties>
+        <!-- Maven -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
+        <!-- Plugins -->
         <spotless-maven-plugin.version>2.22.8</spotless-maven-plugin.version>
         <palantir-java-format.version>2.24.0</palantir-java-format.version>
+        <maven-toolchains-plugin.version>3.0.0</maven-toolchains-plugin.version>
     </properties>
 
     <build>
@@ -64,6 +67,27 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-toolchains-plugin</artifactId>
+                <version>${maven-toolchains-plugin.version}</version>
+                <executions>
+                  <execution>
+                    <goals>
+                      <!-- the toolchain goal binds to the validate phase automatically -->
+                      <goal>toolchain</goal>
+                    </goals>
+                  </execution>
+                </executions>
+                <configuration>
+                  <toolchains>
+                    <!-- this project needs a JDK toolchain, version 17 -->
+                    <jdk>
+                      <version>17</version>
+                    </jdk>
+                  </toolchains>
+                </configuration>
+              </plugin>
         </plugins>
     </build>
 
